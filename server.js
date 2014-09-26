@@ -21,10 +21,13 @@ mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
 
 // app.use(express.favicon()); // use standard favicon
 app.use(morgan('dev'));  // log every request to the console
-app.use(express.static(__dirname + '/views')); 				// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/views/public')); 				// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/')); 				// set the static files location /public/img will be /img for users
 app.use(cookieParser());
 app.use(bodyParser());
 
+// Set the folder where the pages are kept
+app.set('views', __dirname + '/views/private');
 app.set('view engine', 'ejs');
 
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch'}));
